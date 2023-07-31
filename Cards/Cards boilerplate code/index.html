@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<meta charset="utf-8" /> 
+<html>
+	<head>
+		<title>Cards</title>
+		 <style>
+            body {
+                background-color: #000000;
+            }
+            p { 
+                font-family:  "Times New Roman"; 
+                font-size: 28px;
+                text-align: center;
+            }
+            .line1{
+                font-family: "Courier New";
+                color: #E28001;
+                text-align:center;
+                font-size: 35px;
+            }
+        </style>
+	</head>
+	<body>
+		<h1 class="line1">Cards</h1>
+		<div class="line1">
+			<button onclick="newDeck()">New Deck</button>
+			<button onclick="displayDeck()">Display All Cards</button>
+			<button onclick="shuffleCards()">Shuffle Cards</button>
+		</div>
+		<div align="center">
+			<!--create canvas first, then load the JavaScrip --> 
+			<canvas id="cardTable" width="1000" height="800"></canvas>
+			<script src="cards.js"></script>
+		</div>
+	</body>
+</html>
