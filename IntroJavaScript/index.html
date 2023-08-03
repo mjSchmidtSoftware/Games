@@ -1,0 +1,353 @@
+<!--STARTHEAD-->
+<!doctype html>
+<HEAD>
+<meta charset="UTF-8">
+<BASE href='http://www.college1.com/users/cs190/mjschmidt1@my.canyons.edu/'>
+<!--STARTJS-->
+<SCRIPT type="text/javascript"> 
+// ONLY PLACE JAVASCRIPT HERE, KEEP THE SCRIPT TAGS     
+            var myname = "Michael Schmidt"; 
+            var classdescription ="JavaTEMPTEMPscript"; 
+            var thedate = "8-27-17";
+            var customertype = "direct"; 
+           
+            function confirmlink(linkname) {
+               if (confirm("Are you sure you want to jump to " + linkname + "?"))
+                  location = linkname
+            }
+            
+            function WebPageInformation() { 
+               alert ( "name: " + myname + " class: " + classdescription + " date: " + thedate )      
+           }
+         
+           // declare this variable outside of your functions
+           currentspecial = 1     // selects which item that is "on special"
+
+           function displayspecial() {
+              if (currentspecial == 1 ) {
+                 alert("The current special is #1")
+              }
+              if (currentspecial == 2 )  {
+                 alert("The current special is #2")
+              }
+              if (currentspecial == 3 )  {
+                 alert("The current special is #3")
+              }
+              currentspecial = currentspecial + 1
+              if (currentspecial > 3) {
+                  currentspecial = 1
+              }
+           }
+
+           function changetype(){
+              var newtype;
+             
+              if (customertype == "direct" ) {
+                 newtype = "advertising"
+              }
+              if (customertype == "advertising" )  {
+                 newtype = "subscription"
+              }
+              if (customertype == "subscription")  {
+                 newtype = "direct"
+              }
+
+              customertype = newtype;
+
+           } 
+
+           function displaytype(){
+              
+              if (customertype == "direct" ) {
+                 alert("Buy Now! From this web page! My children need new shoes!")
+              }
+              if (customertype == "advertising")  {
+                 alert("Support our advertisers! Click on an ad, so I can make money!")
+              }
+              if (customertype == "subscription" )  {
+                 alert("Renew your subscription today! My children need medicine!")
+              }
+          }
+
+            function productPage(data1,data2,data3,data4){  // productPage 
+              document.getElementById("main");
+              document.body.style.backgroundColor = "lightblue";
+              document.getElementById("main").innerHTML = buildProduct(data1,data2,data3,data4); 
+              //document.getElementById('main').innerHTML = buildProduct(data1,data2,data3,data4); 
+            }
+
+            function mainPage(){     // go back to the main page 
+             document.getElementById("productPage");
+             document.getElementById("main").innerHTML = location.reload();
+            }
+
+            function buildProduct(data1, data2, data3, data4){
+              var data  // data holds the String
+              // this is where I had a bug, use'='first then use'+='when creating the html string                 
+              data = makeHeader(); // you get Undefined at top of page, you have to set data equal to somthing first 
+              data += product(data1, data2, data3,data4); // this code thats in product could be done here. 
+              data += makeFooter() 
+              data +="<div style='text-align:center'><a href='Javascript:mainPage()'>link back to main</a></div>"; 
+              return(data); // return the String 
+            }
+
+            function buildProduct2(data1, data2, data3, data4){
+              var data  // data holds the String
+              // this is where I had a bug, use'='first then use'+='when creating the html string                 
+              data = makeHeader(); // you get Undefined at top of page, you have to set data equal to somthing first 
+              data += product(data1, data2, data3,data4); // this code thats in product could be done here. 
+              data += makeFooter() 
+              return(data); // return the String 
+            }
+
+            function makeHeader() {
+              var data = "<TABLE style='width:100%'><TR style='background-color:lightyellow'><TD >"
+              data ="<H1 style='text-align:center'> Product Description Page</H1>"
+              data +="</TD></TR></TABLE>"
+              return(data)
+            }
+
+             function product(data1, data2, data3,data4){
+                var data = "<TABLE style='width:100%'><TR style='background-color:lightyellow'><TD >"
+                data = "<TABLE style='width:100%' border=1 cellpadding=10><TR><TD rowspan=3 style='width:30%;text-align:center;vertical-align:middle'>"
+                data += "<IFRAME src="
+                data += "'"+ data4 + "'"
+                data += "width='100%'' height='60%'' id='productarea' name='productarea' frameborder='0' marginheight='0'>Warning your Browser does not support IFRAMES</IFRAME></TD><TD><B>product</B>" 
+                data += ": " + data1 + " "
+                data += "</TD><TD style='text-align:left'<B>product</B>"
+                data += ":  " + data2
+                data += "</TD></TR><TR><TD style='text-align:center' colspan=2>Shopping Cart Link Bar</TD></TR><TR><TD colspan=2 ><B>Product Description</B>"
+                data += ":  " + data3
+                data += "</TD></TR></TABLE>"
+                return(data)
+            }
+
+            function makeFooter() {
+              var data = "<TABLE style='width:100%' ><TR style='background-color:lightyellow'><TD>"
+              data ="<P style='text-align:center'><B>Copyright 2013 BOB's Computer's</B></P>"
+              data +="</TD></TR></TABLE>"
+              return(data)
+            }
+             
+            function doSearch() {
+          
+              var searchValue = document.getElementById("mySearch").value;
+              var dataString;
+              var pageData;
+
+              if(searchValue ==  "4426"){
+                productPage('HP 4426', '4426','Newest and Best Laptop from HP Computer')
+              } else if (searchValue ==  "88123"){
+                productPage('IBM 88123 ThinkPad', '88123','IBM micro Laptop Computer')
+              } else if(searchValue ==  "2400X"){
+                productPage('Dell Dimension 2400', '2400X','A fast 2.4 ghz computer, 80 GB HD, 256 Meg, CDRW and DVD.')
+              } 
+             }
+               
+            ////////////////////////////////// lab 7 ///////////////////////////////////////      
+            var ad_Num1 = 1; 
+            var ad_Num2 = 1; 
+
+            function switchImage(imageNum) { 
+             
+             if(imageNum == 0 && ad_Num1 == 1 ){
+                ad_Num1 = 2; 
+                document.getElementById("image1").src = "http://www.college1.com/images/laptop_2.gif"
+                document.getElementById("image2").src = "http://www.college1.com/images/logo2.jpg"
+             } else if(imageNum == 0 && ad_Num1 == 2){
+                ad_Num1 = 1;
+                document.getElementById("image1").src = "http://www.college1.com/images/laptop_1.gif"
+                document.getElementById("image2").src = "http://www.college1.com/images/logo1.jpg"
+             } 
+            }
+
+            function productPage2(){  // productPage 
+              document.getElementById("main");
+              document.body.style.backgroundColor = "lightblue";
+              
+              var data1;
+              var data2;
+              var data3;
+              var data4 = document.getElementById("image1").src; 
+
+              if(data4 == "http://www.college1.com/images/laptop_1.gif"){
+                data1 = "HP 4426";
+                data2 = "4426";
+                data3 = "Newest and Best Laptop from HP Computer"; 
+              } else if(data4 == "http://www.college1.com/images/laptop_2.gif"){
+                data1 = "Dell Dimension 2400";
+                data2 = "2400X";
+                data3 = "A fast 2.4 ghz computer, 80 GB HD, 256 Meg, CDRW and DVD."; 
+              }
+              document.getElementById("main").innerHTML = buildProduct(data1,data2,data3,data4); 
+              
+            }
+            ////////////////////////////////// lab 8 /////////////////////////////////////// 
+
+            function getData(){
+
+            	return navigator.userAgent 
+            }
+
+            function makeColorTableTag(){
+
+                var theString = navigator.userAgent 
+
+                //console.log(theString);
+            	      
+            	
+    			if(theString.indexOf('Media') >= 0 ){
+    				return "<TABLE style='width:100%;background-color:lightblue' >"; // Output style sheet that works for Netscape/Mozilla/Firefox
+            	} else if ( theString.indexOf('Firefox') >= 0) {
+       				return "<TABLE style='width:100%;background-color:lightgreen' >"; // Output style sheet that works for Netscape/Mozilla/Firefox
+    			} else if (theString.indexOf('Chrome') >= 0){
+    				return "<TABLE style='width:100%;background-color:orange' >"; 
+    			}
+            }
+            
+            function getBrowser(){
+            	var theString = navigator.userAgent 
+              
+                if(theString.indexOf('Media') >= 0 ){
+    				return "Internet Explorer"
+            	} else if ( theString.indexOf('Firefox') >= 0) {
+       				return "mozilla firefox"
+    			} else if (theString.indexOf('Chrome') >=0) 
+    				return "Google Chrome"
+            }
+
+            /*
+            // somthing Wrong with version geting the version number 
+            // get back to this 
+            function getVersion(){ 
+            	var theString = navigator.userAgent 
+                
+                var majornumber = 0
+                var minornumber = 0 
+
+                if(theString.indexOf('Media') >= 0 ){
+    				var position  = theString.indexOf(':');
+    				majornumber = theString.charAt(position + 1);
+    				minornumber = theString.charAt(position + 2);
+
+            	} else if ( theString.indexOf('Firefox') >= 0) {
+       				
+    			} else if (theString.indexOf('Chrome') >=0) 
+
+    			return (majornumber + minornumber); 		
+            }
+            */
+            ////////////////////////////////// lab 9 ///////////////////////////////////////
+
+            function getDate(){
+            	var d = new Date();
+            	return d
+            } 
+
+            function getRandomArbitrary(min, max) {
+  				return Math.random() * (max - min) + min;
+			}
+
+            function goBack() {
+    			window.history.back();
+			}
+			////////////////////////////////// lab 10 ///////////////////////////////////////
+
+			function showCards(imagenum) {
+				
+				//var data = ""; //data to be returned 
+		
+				count = 0
+    			while (count < imagenum) { 
+           			document.writeln("<td><img src='http://www.college1.com/images/cards/gbCard52.gif' NAME='card"+count+"'></td>")
+           			count = count + 1
+     			}
+			}
+
+</SCRIPT>
+<!--ENDJS-->
+</HEAD>
+<!--ENDHEAD-->
+<div id=main>
+
+<h2> LAB 10 Assignment </h2>
+<table border=0 style='margin:auto'><tr> 
+
+              <td><form><input type="BUTTON" onClick="Javascript:alert('Dummy Link')" value="Deal > > >"></form></td> 
+
+              <script type="text/javascript">showCards(4)</script>    <!--  See note below about showCards  -->
+              
+              <td><form><input type="BUTTON" onClick="Javascript:alert('Dummy Link')" value="< < < Hit Me"></form></td>
+
+</tr></table> 
+
+
+<h2> LAB 9 Assignment </h2>
+<div><script type='text/javascript'> document.writeln(getDate())</script></div>
+<div><script type='text/javascript'> document.writeln(getRandomArbitrary(0,1))</script></div>
+<div><A HREF="javascript:goBack()">Link to go back</A> </div>
+<h2> LAB 8 Assignment </h2>
+<!--<script type='text/javascript'> document.writeln(getData())</script>-->
+<script type='text/javascript'> document.writeln(makeColorTableTag())</script>
+<TR>
+   <TD>
+      <H1>
+         THIS IS
+         <script type='text/javascript'> document.writeln(getBrowser())</script>
+      </H1>
+   </TD>
+</TR>
+</TABLE>
+<h2> Lab 7 Assignment </h2>
+<div>
+   <TABLE style='width:40%' border=1 cellpadding=10>
+      <TR>
+         <TD>
+            <A ONMOUSEOVER="switchImage(0)">
+            <img id='image1' src="http://www.college1.com/images/laptop_1.gif"></A>
+         </TD>
+         <TD>
+            <A HREF="javascript:productPage2()">
+            <img id='image2' src="http://www.college1.com/images/logo1.jpg"></A>
+         </TD>
+      </TR>
+   </TABLE>
+</div>
+<hr />
+<h2> Lab 6 Assignment </h2>
+<FORM NAME="searchbox">
+   <INPUT TYPE="TEXT" id="mySearch" value="2400X">
+   <INPUT TYPE="BUTTON" VALUE="Search" ONCLICK="Javascript:doSearch()">(lab6) search items: "4426", "88123" or "2400X"
+</FORM>
+<hr />
+<h2> Lab 5 Assignment </h2>
+<div>
+<A HREF="javascript:productPage('HP 4426', '4426','Newest and Best Laptop from HP Computer') "> Item #1: HP 4426</A> 
+<div>
+<A HREF="javascript:productPage('IBM 88123 ThinkPad', '88123','IBM micro Laptop Computer')"> Item #2: IBM</A> 
+<div>
+   <A HREF="javascript:productPage('Dell Dimension 2400', '2400X','A fast 2.4 ghz computer, 80 GB HD, 256 Meg, CDRW and DVD.')"> Item #1: DELL 2400X</A> 
+   <hr />
+   <H2> Lab 4 Assignment </H2>
+   <div><A HREF="Javascript:changetype()">Change Customer Type</A></div>
+   <div><A HREF="Javascript:displaytype()">Display Message</A></div>
+   <HR / >
+   <H2> Lab 3 Assignment </H2>
+   <A HREF="Javascript:displayspecial()">Todays Special</A>
+   <div>
+      <h3>"SyntaxError: unterminated string literal"</h3>
+   </div>
+   <div>
+      <h3>"SyntaxError: missing )"</h3>
+   </div>
+   <div>
+      <h3>"SyntaxError: missing ) after argument list"</h3>
+   </div>
+   <HR />
+   <H2> Lab 2 Assignment </H2>
+   <div><A HREF="Javascript:WebPageInformation()">displayinfo</A></div>
+   <HR />
+   <H2> Lab 1 Assignment </H2>
+   <div><A HREF="Javascript:confirmlink('http://www.college1.com ')">jump to college1.com</A></div>
+   <div><A HREF="Javascript:confirmlink('http://mjschmidt0913.x10host.com')">Jump to my outside link </A></div>
+</div>
